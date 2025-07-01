@@ -4,17 +4,16 @@ Este repositorio contiene mi configuración personal para Arch Linux con el ento
 
 ---
 
-## 📦 Tecnologías
+## Tecnologías
 
-- 🧠 [Hyprland](https://github.com/hyprwm/Hyprland)
-- 📊 [Waybar](https://github.com/Alexays/Waybar)
-- 🖥️ [Kitty](https://sw.kovidgoyal.net/kitty/)
-- 🎨 [Nerd Fonts](https://www.nerdfonts.com/) (para iconos y estética)
-- 🔉 PulseAudio (para el audio del sistema)
+-  [Hyprland](https://github.com/hyprwm/Hyprland)
+-  [Waybar](https://github.com/Alexays/Waybar)
+-  [Kitty](https://sw.kovidgoyal.net/kitty/)
+-  [Nerd Fonts](https://www.nerdfonts.com/) (para iconos y estética)
 
 ---
 
-## 💻 Estructura del repositorio
+## Estructura del repositorio
 
 ```bash
 .
