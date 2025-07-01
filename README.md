@@ -14,7 +14,7 @@ Este repositorio contiene mi configuración personal para Arch Linux con el ento
 
 ---
 
-## 🛠️ Estructura del repositorio
+## \ea91 Estructura del repositorio
 
 ```bash
 .
