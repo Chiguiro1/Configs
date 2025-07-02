@@ -1,67 +1,90 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/bin/bash
 
-echo "🚀 Iniciando instalación de Configs..."
+echo " Instalando entorno de configuración..."
 
-REPO="https://github.com/Chiguiro1/Configs.git"
-DOT="$HOME/dotfiles"
-ZDOT="$HOME/.config/zsh"
+# Ruta base
+DOTFILES_DIR="$HOME/dotfiles"
+CONFIG_DIR="$HOME/.config"
 
-# 1️⃣ Clonar o actualizar repo
-if [[ ! -d "$DOT" ]]; then
-  git clone --recurse-submodules "$REPO" "$DOT"
-else
-  echo "✅ ~/dotfiles ya existe, actualizando..."
-  cd "$DOT"
-  git pull
-  git submodule update --init --recursive
-  cd -
+# instalando paquetes necesarios
+echo " Instalando paquetes necesarios..."
+sudo pacman -S --needed eza bat ripgrep fd fzf neovim zsh git curl
+
+# Crear .config si no existe
+mkdir -p "$CONFIG_DIR"
+
+# -----------------------------
+# 1. Enlaces simbólicos
+# -----------------------------
+echo " Enlazando configuraciones..."
+ln -sf "$DOTFILES_DIR/hypr" "$CONFIG_DIR/hypr"
+ln -sf "$DOTFILES_DIR/waybar" "$CONFIG_DIR/waybar"
+ln -sf "$DOTFILES_DIR/nvim" "$CONFIG_DIR/nvim"
+ln -sf "$DOTFILES_DIR/zsh" "$CONFIG_DIR/zsh"
+ln -sf "$DOTFILES_DIR/kitty" "$CONFIG_DIR/kitty"
+
+# -----------------------------
+# 2. Zsh y plugins
+# -----------------------------
+echo " Instalando Oh My Zsh..."
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-# 2️⃣ Symlinks de configuraciones
-echo "🔗 Creando symlinks..."
-mkdir -p ~/.config
-ln -sfn "$DOT/hypr" ~/.config/hypr
-ln -sfn "$DOT/waybar" ~/.config/waybar
-ln -sfn "$DOT/nvim" ~/.config/nvim
+echo " Instalando plugins de Zsh..."
+ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
 
-# ✳️ Zsh: mover configuración a XDG y enlazar .zshrc
-echo "🐚 Configurando Zsh..."
-mkdir -p "$ZDOT"
-ln -sfn "$DOT/zsh/.zshrc" "$ZDOT/.zshrc"
-ln -sfn "$DOT/zsh/.zshenv" "$ZDOT/.zshenv" || true
-# Symlink wrapper en $HOME si no existe
-[ ! -L ~/.zshrc ] && ln -sfn "$ZDOT/.zshrc" ~/.zshrc
-
-# 3️⃣ Instalar dependencias mínimas
-echo "📦 Instalando dependencias..."
-if command -v pacman &>/dev/null; then
-  sudo pacman -Sy --needed --noconfirm neovim git ripgrep fd hyprland zsh
-elif command -v apt &>/dev/null; then
-  sudo apt update
-  sudo apt install -y neovim git ripgrep fd-find zsh
-else
-  echo "⚠️ No se detectó pacman ni apt. Revisa la instalación manualmente."
+# zsh-autosuggestions
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 fi
 
-# 4️⃣ Inicializar submódulos si existen
-if [[ -f "$DOT/.gitmodules" ]]; then
-  echo "🔁 Inicializando submódulos..."
-  cd "$DOT"
-  git submodule update --init --recursive
-  cd -
+# zsh-syntax-highlighting
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 fi
 
-# 5️⃣ Cambiar shell por defecto a Zsh
-if [[ "$SHELL" != "$(which zsh)" ]]; then
-  echo "🔄 Cambiando shell por defecto a Zsh..."
-  chsh -s "$(which zsh)"
+# -----------------------------
+# 3. Powerlevel10k
+# -----------------------------
+echo " Instalando Powerlevel10k..."
+if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
 fi
 
-echo ""
-echo "✅ Instalación finalizada."
-echo "Instrucciones:"
-echo "  • Reinicia tu terminal o inicia Zsh manualmente con 'zsh'"
-echo "  • En Neovim, ejecuta ':Lazy sync' para instalar plugins"
-echo "  • Si ves errores, revisa que tus rutas y permisos sean correctos"
+# -----------------------------
+# 4. Fuente Nerd Font (MesloLGS)
+# -----------------------------
+echo " Instalando fuente MesloLGS Nerd Font..."
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts || exit
+curl -fLo "MesloLGS NF Regular.ttf" \
+  https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/L/Regular/MesloLGS%20NF%20Regular.ttf
+curl -fLo "MesloLGS NF Bold.ttf" \
+  https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/L/Bold/MesloLGS%20NF%20Bold.ttf
+curl -fLo "MesloLGS NF Italic.ttf" \
+  https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/L/Italic/MesloLGS%20NF%20Italic.ttf
+curl -fLo "MesloLGS NF Bold Italic.ttf" \
+  https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/L/Bold-Italic/MesloLGS%20NF%20Bold%20Italic.ttf
+fc-cache -fv
+
+# -----------------------------
+# 5. Zsh por defecto
+# -----------------------------
+echo "⚙️ Cambiando shell por defecto a Zsh..."
+chsh -s "$(which zsh)"
+
+# -----------------------------
+# 6. Neovim: Lazy.nvim
+# -----------------------------
+echo " Verificando Lazy.nvim en Neovim..."
+if [ ! -d "$DOTFILES_DIR/nvim/lazy/lazy.nvim" ]; then
+  git clone https://github.com/folke/lazy.nvim.git "$DOTFILES_DIR/nvim/lazy/lazy.nvim"
+fi
+
+# -----------------------------
+# 7. Mensaje final
+# -----------------------------
+echo -e "\n✅ Instalación completa. Reinicia la sesión para aplicar todos los cambios."
+echo "💡 Ejecuta 'p10k configure' para personalizar el prompt de Zsh."
 

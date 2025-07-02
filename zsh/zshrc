@@ -37,7 +37,7 @@ fi
 alias ls='eza --icons'
 alias ll='eza -lF --icons'
 alias la='eza -laF --icons'
-alias lt='eza -T --level=2 --icons'  # árbol de archivos
+alias lt='eza -T --level=2 --icons' 
 alias l='eza -F --icons'
 
 # bat (mejor cat)
