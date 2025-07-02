@@ -1,28 +1,54 @@
-# CONFIGS
+## Configs 
 
-Este repositorio contiene mi configuración personal para Arch Linux con el entorno de ventanas [Hyperland](https://github.com/hyprwm/Hyprland), el panel [Waybar](https://github.com/Alexays/Waybar), y el emulador de terminal [Kitty](https://sw.kovidgoyal.net/kitty/).
+Este repositorio contiene mi entorno completo de configuración para Linux —principalmente basado en Arch— incluyendo:
+
+- [Hyprland](https://github.com/hyprwm/Hyprland)
+- [Waybar](https://github.com/Alexays/Waybar)
+- [Neovim](https://neovim.io/)
+- [Zsh](https://www.zsh.org/)
+- Wallpapers y más...
+
+> ⚠️ Este entorno está pensado para usarse con [Hyprland](https://hyprland.org) y Wayland.
 
 ---
 
-## Tecnologías
+## 📦 Requisitos
 
--  [Hyprland](https://github.com/hyprwm/Hyprland)
--  [Waybar](https://github.com/Alexays/Waybar)
--  [Kitty](https://sw.kovidgoyal.net/kitty/)
--  [Nerd Fonts](https://www.nerdfonts.com/) (para iconos y estética)
--  [NeoVim](https://neovim.io/)
+Antes de instalar, asegúrate de tener:
 
+- Linux (Arch Linux o derivado recomendado)
+- Git
+- Zsh
+- Neovim
+- `ripgrep` (`rg`)
+- `fd` (`fd-find` en Debian/Ubuntu)
 
-## Estructura del repositorio
+---
+
+## Estructura
 
 ```bash
-.
-├── hypr/              # Configuración de Hyprland
-│   └── hyprland.conf
-├── kitty/             # Configuración de Kitty
-│   └── kitty.conf
-├── waybar/            # Configuración de Waybar
-│   ├── config.jsonc
-│   └── style.css
-└── README.md          # Este archivo
+dotfiles/
+├── hypr/             → Configuración de Hyprland
+├── waybar/           → Configuración de Waybar
+├── nvim/             → Neovim + Lazy + plugins
+│   ├── init.lua
+│   └── lua/
+├── zsh/              → Configuración de Zsh (.zshrc, .zshenv)
+├── wallpapers/       → Fondos usados por Hyprpaper
+├── instalation.sh    → Script de instalación automática
+└── .gitmodules       → Submódulos como lazy.nvim
+
+---
+
+## ⚙️ Instalación
+
+1. Abre una terminal
+2. Clona este repositorio con submódulos y ejecuta el script:
+
+```bash
+git clone --recurse-submodules https://github.com/Chiguiro1/Configs.git ~/dotfiles
+cd ~/dotfiles
+chmod +x instalation.sh
+./instalation.sh
 
