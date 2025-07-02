@@ -1,4 +1,4 @@
-## Configs 
+# Configs 
 
 Este repositorio contiene mi entorno completo de configuración para Linux —principalmente basado en Arch— incluyendo:
 
@@ -12,7 +12,7 @@ Este repositorio contiene mi entorno completo de configuración para Linux —pr
 
 ---
 
-## 📦 Requisitos
+##  Requisitos
 
 Antes de instalar, asegúrate de tener:
 
@@ -38,6 +38,7 @@ dotfiles/
 ├── wallpapers/       → Fondos usados por Hyprpaper
 ├── instalation.sh    → Script de instalación automática
 └── .gitmodules       → Submódulos como lazy.nvim
+```
 
 ---
 
@@ -51,4 +52,4 @@ git clone --recurse-submodules https://github.com/Chiguiro1/Configs.git ~/dotfil
 cd ~/dotfiles
 chmod +x instalation.sh
 ./instalation.sh
-
+```
