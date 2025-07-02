@@ -1,46 +1,67 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-set -e  # Si algo falla, termina el script
+echo "🚀 Iniciando instalación de Configs..."
 
-echo "🚀 Iniciando instalación de configuraciones..."
+REPO="https://github.com/Chiguiro1/Configs.git"
+DOT="$HOME/dotfiles"
+ZDOT="$HOME/.config/zsh"
 
-# 1. Clonar el repo si no existe aún
-if [ ! -d "$HOME/dotfiles" ]; then
-  echo "📥 Clonando repositorio de configuraciones..."
-  git clone --recurse-submodules https://github.com/Chiguiro1/Configs.git "$HOME/dotfiles"
+# 1️⃣ Clonar o actualizar repo
+if [[ ! -d "$DOT" ]]; then
+  git clone --recurse-submodules "$REPO" "$DOT"
 else
-  echo "✅ Ya existe ~/dotfiles, omitiendo clonación"
-fi
-
-# 2. Crear symlinks
-echo "🔗 Creando enlaces simbólicos a .config"
-
-mkdir -p ~/.config
-
-ln -sf "$HOME/dotfiles/hypr" ~/.config/hypr
-ln -sf "$HOME/dotfiles/waybar" ~/.config/waybar
-ln -sf "$HOME/dotfiles/nvim" ~/.config/nvim
-
-# 3. Instalar dependencias mínimas
-echo "📦 Instalando dependencias necesarias..."
-
-if command -v pacman &> /dev/null; then
-  sudo pacman -Sy --needed --noconfirm neovim git ripgrep fd hyprland
-elif command -v apt &> /dev/null; then
-  sudo apt update
-  sudo apt install -y neovim git ripgrep fd-find
-fi
-
-# 4. Inicializar submódulos si es necesario
-if [ -f "$HOME/dotfiles/.gitmodules" ]; then
-  echo "🔁 Inicializando submódulos..."
-  cd "$HOME/dotfiles"
+  echo "✅ ~/dotfiles ya existe, actualizando..."
+  cd "$DOT"
+  git pull
   git submodule update --init --recursive
+  cd -
 fi
 
-# 5. Crear carpetas necesarias
-echo "📁 Asegurando estructura de wallpapers..."
-mkdir -p ~/.config/hypr/wallpapers
+# 2️⃣ Symlinks de configuraciones
+echo "🔗 Creando symlinks..."
+mkdir -p ~/.config
+ln -sfn "$DOT/hypr" ~/.config/hypr
+ln -sfn "$DOT/waybar" ~/.config/waybar
+ln -sfn "$DOT/nvim" ~/.config/nvim
 
-echo "✅ Instalación completada. Reinicia Hyprland o tu terminal para ver los cambios."
+# ✳️ Zsh: mover configuración a XDG y enlazar .zshrc
+echo "🐚 Configurando Zsh..."
+mkdir -p "$ZDOT"
+ln -sfn "$DOT/zsh/.zshrc" "$ZDOT/.zshrc"
+ln -sfn "$DOT/zsh/.zshenv" "$ZDOT/.zshenv" || true
+# Symlink wrapper en $HOME si no existe
+[ ! -L ~/.zshrc ] && ln -sfn "$ZDOT/.zshrc" ~/.zshrc
+
+# 3️⃣ Instalar dependencias mínimas
+echo "📦 Instalando dependencias..."
+if command -v pacman &>/dev/null; then
+  sudo pacman -Sy --needed --noconfirm neovim git ripgrep fd hyprland zsh
+elif command -v apt &>/dev/null; then
+  sudo apt update
+  sudo apt install -y neovim git ripgrep fd-find zsh
+else
+  echo "⚠️ No se detectó pacman ni apt. Revisa la instalación manualmente."
+fi
+
+# 4️⃣ Inicializar submódulos si existen
+if [[ -f "$DOT/.gitmodules" ]]; then
+  echo "🔁 Inicializando submódulos..."
+  cd "$DOT"
+  git submodule update --init --recursive
+  cd -
+fi
+
+# 5️⃣ Cambiar shell por defecto a Zsh
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+  echo "🔄 Cambiando shell por defecto a Zsh..."
+  chsh -s "$(which zsh)"
+fi
+
+echo ""
+echo "✅ Instalación finalizada."
+echo "Instrucciones:"
+echo "  • Reinicia tu terminal o inicia Zsh manualmente con 'zsh'"
+echo "  • En Neovim, ejecuta ':Lazy sync' para instalar plugins"
+echo "  • Si ves errores, revisa que tus rutas y permisos sean correctos"
 
