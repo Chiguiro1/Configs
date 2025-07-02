@@ -10,8 +10,8 @@ Este repositorio contiene mi configuración personal para Arch Linux con el ento
 -  [Waybar](https://github.com/Alexays/Waybar)
 -  [Kitty](https://sw.kovidgoyal.net/kitty/)
 -  [Nerd Fonts](https://www.nerdfonts.com/) (para iconos y estética)
+-  [NeoVim](https://neovim.io/)
 
----
 
 ## Estructura del repositorio
 
