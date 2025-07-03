@@ -121,12 +121,11 @@ fc-cache -fv
 
 # Autor
 
-#@Chiguiro1
+# @Chiguiro1
 
 Este entorno fue creado por y para un uso personal, pero puedes adaptarlo a tu flujo fácilmente.
 
- Nota final
+-- Nota    
 
 Este repo está en constante evolución. Si encuentras errores o tienes sugerencias, siéntete libre de abrir un issue o un PR.
 
-¡Disfrútalo! ✨
