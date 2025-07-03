@@ -117,12 +117,15 @@ fc-cache -fv
     Kitty por su velocidad y soporte de gráficos GPU
 
     Puedes modificarlo desde kitty/kitty.conf
+```
 
- Autor
+# Autor
 
-@Chiguiro1
+#@Chiguiro1
+
 Este entorno fue creado por y para un uso personal, pero puedes adaptarlo a tu flujo fácilmente.
-🧪 Nota final
+
+ Nota final
 
 Este repo está en constante evolución. Si encuentras errores o tienes sugerencias, siéntete libre de abrir un issue o un PR.
 
