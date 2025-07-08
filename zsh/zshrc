@@ -43,19 +43,22 @@ alias l='eza -F --icons'
 # bat (mejor cat)
 alias cat='bat --theme=Nord --style=plain --paging=never'
 
+# roblox 
+alias roblox='flatpak run org.vinegarhq.Sober'
+# confis
+alias hyprcf='nvim ~/dotfiles/hypr'
+alias zshcf='nvim ~/dotfiles/zsh/zshrc'
+alias szsh='source ~/.zshrc'
+alias waybcf='nvim ~/dotfiles/waybar'
+
 # Git
 alias gs='git status'
 alias gp='git push'
-alias gl='git log --oneline --graph --decorate --all'
 
-# Pacman (gestor de paquetes de Arch)
 alias update='sudo pacman -Syu'
-alias cleanup='sudo pacman -Rns $(pacman -Qdtq)'
+alias off='shutdown -h now'
 
-# Navegación
-alias ..='cd ..'
-alias ...='cd ../..'
-
+alias homelab='TERM=xterm-256color ssh chiguiro@192.168.40.23' 
 # ─── OPCIONES DE ZSH ──────────────────────────────
 
 # Correct minor typos in commands
