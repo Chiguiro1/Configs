@@ -86,5 +86,5 @@ fi
 # 7. Mensaje final
 # -----------------------------
 echo -e "\n✅ Instalación completa. Reinicia la sesión para aplicar todos los cambios."
-echo "💡 Ejecuta 'p10k configure' para personalizar el prompt de Zsh."
+echo "Ejecuta 'p10k configure' para personalizar el prompt de Zsh."
 
