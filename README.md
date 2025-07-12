@@ -41,7 +41,7 @@ dotfiles/
 ```
 ---
 
-## ⚙️ Instalación
+## Instalación
 
 1. Abre una terminal
 2. Clona este repositorio con submódulos y ejecuta el script:
@@ -54,7 +54,7 @@ chmod +x instalation.sh
 ```
 ---
 
-## 🔧 ¿Qué hace el script?
+##  ¿Qué hace el script?
 
 El archivo `instalation.sh` realiza lo siguiente:
 
@@ -68,7 +68,7 @@ El archivo `instalation.sh` realiza lo siguiente:
 
 ---
 
-## 🖥️ Personalización
+##  Personalización
 
 - Ejecuta `p10k configure` para personalizar el prompt de Zsh
 - Modifica los módulos de Waybar en `waybar/config.jsonc`
@@ -77,7 +77,7 @@ El archivo `instalation.sh` realiza lo siguiente:
 
 ---
 
-## 🧱 Herramientas utilizadas
+##  Herramientas utilizadas
 
 | Herramienta               | Descripción                                |
 |---------------------------|--------------------------------------------|
