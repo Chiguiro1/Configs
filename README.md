@@ -1,3 +1,12 @@
+##  .oooooo.   oooo         o8o                          o8o                     
+## d8P'  `Y8b  `888         `"'                          `"'                     
+## 888           888 .oo.   oooo   .oooooooo oooo  oooo  oooo  oooo d8b  .ooooo.  
+## 888           888P"Y88b  `888  888' `88b  `888  `888  `888  `888""8P d88' `88b 
+## `88b    ooo   888   888   888  `88bod8P'   888   888   888   888     888   888 
+## `Y8bood8P'  o888o o888o o888o `8oooooo.   `V88V"V8P' o888o d888b    `Y8bod8P' 
+##                               d"     YD                                       
+##                               "Y88888P'  
+
 # Configs 
 
 Este repositorio contiene mi entorno completo de configuración para Linux —principalmente basado en Arch— incluyendo:
