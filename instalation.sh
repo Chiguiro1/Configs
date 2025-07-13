@@ -1,5 +1,4 @@
 #!/bin/bash
-
 echo " Instalando entorno de configuración..."
 
 # Ruta base
@@ -8,7 +7,7 @@ CONFIG_DIR="$HOME/.config"
 
 # instalando paquetes necesarios
 echo " Instalando paquetes necesarios..."
-sudo pacman -S --needed eza bat ripgrep fd fzf neovim zsh git curl
+sudo pacman -S --needed eza bat ripgrep fd fzf neovim zsh git curl hyprpaper hyprlock rofi
 
 # Crear .config si no existe
 mkdir -p "$CONFIG_DIR"
