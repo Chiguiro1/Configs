@@ -43,8 +43,7 @@ alias l='eza -F --icons'
 # bat (mejor cat)
 alias cat='bat --theme=Nord --style=plain --paging=never'
 
-# roblox 
-alias roblox='flatpak run org.vinegarhq.Sober'
+roblox 
 # confis
 alias hyprcf='nvim ~/dotfiles/hypr'
 alias zshcf='nvim ~/dotfiles/zsh/zshrc'
@@ -59,6 +58,7 @@ alias update='sudo pacman -Syu'
 alias off='shutdown -h now'
 
 alias homelab='TERM=xterm-256color ssh chiguiro@192.168.40.23' 
+
 # ─── OPCIONES DE ZSH ──────────────────────────────
 
 # Correct minor typos in commands
