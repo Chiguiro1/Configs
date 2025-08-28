@@ -1,12 +1,11 @@
 # Configs 
 
-Este repositorio contiene mi entorno completo de configuración para Linux —principalmente basado en Arch— incluyendo:
+Este repositorio contiene mi entorno completo de configuración para Linux incluyendo:
 
 - [Hyprland](https://github.com/hyprwm/Hyprland)
 - [Waybar](https://github.com/Alexays/Waybar)
 - [Neovim](https://neovim.io/)
 - [Zsh](https://www.zsh.org/)
-- Wallpapers y más...
 
 ---
 
@@ -39,7 +38,7 @@ dotfiles/
 ## Instalación
 
 1. Abra una terminal
-2. Clone este repositorio con submódulos y ejecuta el script:
+2. Clone este repositorio con submódulos y ejecute el script:
 
 ```bash
 git clone --recurse-submodules https://github.com/Chiguiro1/Configs.git ~/dotfiles
@@ -53,13 +52,13 @@ chmod +x instalation.sh
 
 El archivo `instalation.sh` realiza lo siguiente:
 
-- Cree enlaces simbólicos desde `~/dotfiles` a `~/.config`
-- Instale y configura **Oh My Zsh**
-- Instale el tema **Powerlevel10k**
-- Instale plugins útiles: `zsh-autosuggestions`, `zsh-syntax-highlighting`
-- Instale la fuente **MesloLGS Nerd Font** para íconos en terminal
-- Cambie su shell por defecto a Zsh
-- Asegure que Neovim y Lazy funcionen correctamente
+- Crea enlaces simbólicos desde `~/dotfiles` a `~/.config`
+- Instala y configura **Oh My Zsh**
+- Instala el tema **Powerlevel10k**
+- Instala plugins útiles: `zsh-autosuggestions`, `zsh-syntax-highlighting`
+- Instala la fuente **MesloLGS Nerd Font** para íconos en terminal
+- Cambia su shell por defecto a Zsh
+- Verificar que Neovim y Lazy funcionen correctamente
 
 ---
 
@@ -89,7 +88,7 @@ El archivo `instalation.sh` realiza lo siguiente:
 
 ##  Tips
 
-- Si Hyprland crashea por "Too many levels of symbolic links", borra el archivo que cause el bucle con `rm` y vuelve a enlazarlo correctamente.
+- Si Hyprland crashea por "Too many levels of symbolic links", borre el archivo que cause el bucle con `rm` y vuelve a enlazarlo correctamente.
 - Si `zsh-autosuggestions` o `zsh-syntax-highlighting` no funcionan, revise que existan en `~/.oh-my-zsh/custom/plugins/`.
 - Use `wpctl get-volume @DEFAULT_AUDIO_SINK@` para verificar si su sistema inicia en silencio.
 - Use `pavucontrol` si prefiere una interfaz gráfica para el audio.
