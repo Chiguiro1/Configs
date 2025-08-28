@@ -43,7 +43,6 @@ alias l='eza -F --icons'
 # bat (mejor cat)
 alias cat='bat --theme=Nord --style=plain --paging=never'
 
-roblox 
 # confis
 alias hyprcf='nvim ~/dotfiles/hypr'
 alias zshcf='nvim ~/dotfiles/zsh/zshrc'
